@@ -111,7 +111,7 @@ const deleteBlogByid = async function (req, res) {
 
     const data = await blogModel.findOne({ _id: req.params.blogId, isDeleted: false });//authroisation feature for Author
     if (!data) {
-      res.status(404).send({ status: false, msg: "blog doe not exist or already deleted" });}
+      res.status(404).send({ status: false, msg: "blog does not exist or already deleted" });}
 
     if (!(data.authorId == req.body.tokenId)) {
       res.status(400).send({ status: false, msg: "unauthorized access" })}
@@ -129,7 +129,7 @@ const deleteBlogQuery = async function (req, res) {
       return res.status(400).send({ status: false, msg: 'Send by Query' });}
 
     let searchFilter = { authorId: req.body.tokenId }//Authorisation to delete blog
- 
+
     if (req.query.authorid) {
       searchFilter.authorId = req.query.authorid}
 
